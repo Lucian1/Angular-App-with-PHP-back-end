@@ -1,0 +1,35 @@
+<b>
+  Update Car Information
+</b>
+<div id="theList">
+    
+  
+    <div class="list-group">
+      <div *ngFor="let item of cars;let i = index;" class="list-group-item row">
+        <div class="col-md-4">
+          <input type="text"
+                 [(ngModel)]="cars[i].model"
+                 class="form-control"
+                 required
+                 pattern="^[a-zA-Z]+$"
+                 #model="ngModel"
+                 [ngClass]="{ 'is-invalid': model.touched && model.invalid }">
+        </div>
+        <div class="col-md-4">
+          <input type="number"
+                 [(ngModel)]="cars[i].price"
+                 class="form-control"
+                 required
+                 #price="ngModel"
+                 [ngClass]="{ 'is-invalid': price.touched && price.invalid }">
+        </div>
+        <div class="col-md-4">
+          <input type="button"
+                 value="Update"
+                 class="btn btn-success btn-sm"
+                 [disabled]="model.invalid || price.invalid"
+                 (click)="updateCar(model, price, item.id)">
+        </div>
+      </div>
+    </div>
+  </div>
